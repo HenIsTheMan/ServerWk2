@@ -1,2 +1,0 @@
-2021-05-30 16:43:58,045 [1] INFO  Photon.SocketServer.ApplicationBase - Application start: AppId=CounterPublisher; AppPath=C:\Users\SRHD\Desktop\Git\ServerWk2\Photon-OnPremise-Server-Plugin-SDK_v4-0-29-11263\deploy\CounterPublisher, Type=Photon.CounterPublisher.Application 
-2021-05-30 16:43:58,062 [1] INFO  Photon.SocketServer.Diagnostics.CounterPublisher - CounterPublisher started publishing ExitGames.Diagnostics.Monitoring.CounterSamplePublisher to ExitGames.Diagnostics.Monitoring.CounterSampleSender
