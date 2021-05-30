@@ -1,4 +1,6 @@
 ﻿using Photon.Hive.Plugin;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MyFirstPlugin {
     public class MyFirstPlugin: PluginBase {
@@ -13,8 +15,24 @@ namespace MyFirstPlugin {
 		//}
 
 		public override void OnCreateGame(ICreateGameCallInfo info) {
-            this.PluginHost.LogInfo(string.Format("OnCreateGame {0} by user {1}", info.Request.GameId, info.UserId));
+            PluginHost.LogInfo(string.Format("OnCreateGame {0} by user {1}", info.Request.GameId, info.UserId));
             info.Continue(); // same as base.OnCreateGame(info);
         }
+
+		public override void OnRaiseEvent(IRaiseEventCallInfo info) {
+			base.OnRaiseEvent(info);
+			if(info.Request.EvCode == 1) {
+				string request = Encoding.Default.GetString((byte[])info.Request.Data);
+				string response = "Message Received: " + request;
+				PluginHost.BroadcastEvent(
+				target: ReciverGroup.All,
+				senderActor: 0,
+				targetGroup: 0,
+				data: new Dictionary<byte, object>() { { 245, response } },
+				evCode: info.Request.EvCode,
+				cacheOp: 0
+				);
+			}
+		}
 	}
 }
